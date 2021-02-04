@@ -9,7 +9,19 @@ import java.util.Properties;
 
 public class DBAuthService implements AuthService{
     private static final Logger LOGGER = LogManager.getLogger(DBAuthService.class.getName());
-    Connection connection ;
+    private static DBAuthService dbAuthService;
+    private Connection connection ;
+
+    static DBAuthService getInstance() {
+        if(dbAuthService == null) {
+            dbAuthService = new DBAuthService();
+        }
+        return dbAuthService;
+    }
+
+    private DBAuthService(){
+
+    }
 
     @Override
     public boolean start() {

@@ -39,7 +39,7 @@ public class Server {
         this.rootDir = rootDir;
         final SslContext sslCtx = getSslContext(ssl);
 
-        authService = new DBAuthService();
+        authService = DBAuthService.getInstance();
         if(!authService.start()) {
             throw new AuthServiceNotStart("Server not started. Auth service not started.");
         }
