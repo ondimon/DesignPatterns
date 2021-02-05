@@ -1,0 +1,22 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+version '1.0-SNAPSHOT'
+
+dependencies {
+    compile project(':Common')
+}
+
+javafx {
+    version = "13"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+mainClassName = 'Client'
+
+jar {
+    manifest.attributes("Main-Class": mainClassName);
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
